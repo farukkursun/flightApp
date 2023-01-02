@@ -2,6 +2,12 @@ from .base import *
 
 
 
+ALLOWED_HOSTS = ["*"]
+
+AUTH_PASSWORD_VALIDATORS = [
+   
+]
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 

@@ -25,7 +25,7 @@ SECRET_KEY = config("SECRET_KEY")
 
 
 
-ALLOWED_HOSTS = ["*"]
+
 
 
 # Application definition
@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
    'rest_framework',
+   'rest_framework.authtoken',
+   ###
    'drf_yasg',
+    'dj_rest_auth',
+    'users',
    
 ]
 
@@ -83,20 +87,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+
 
 
 # Internationalization
@@ -163,4 +154,13 @@ LOGGING = {
             # will not be handled by the django logger. 
         }, 
     }, 
+}
+
+REST_FRAMEWORK = {
+    # Allow post-request without CSRF, so can connection with Token from external service, like Postman:
+    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.TokenAuthentication']
+}
+
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'users.serializers.CustomTokenSerializer',
 }
