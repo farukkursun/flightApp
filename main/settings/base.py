@@ -43,6 +43,8 @@ INSTALLED_APPS = [
    'drf_yasg',
     'dj_rest_auth',
     'users',
+    #my apps
+    'flight',
    
 ]
 
